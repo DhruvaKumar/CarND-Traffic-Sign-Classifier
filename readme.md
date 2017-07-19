@@ -11,7 +11,7 @@
 [image7]: ./output_images/accuracy.png "accuracy"
 [image8]: ./output_images/loss.png "loss"
 [image9]: ./output_images/new_images.png "new images"
-[image9]: ./output_images/top5.png "top5"
+[image10]: ./output_images/top5.png "top5"
 
 
 Overview
