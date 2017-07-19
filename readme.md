@@ -65,13 +65,13 @@ The following perturbations were added to each image to generate a new set of tr
 * Shear (uniform distribution between -0.1 to 0.1 change along each axis)
 * Brightness (uniform distribution between 0.25 to 1.1 scale change of the V channel in the HSV color space)
 
-Affine transformations like translation and rotation have the effect of viewing the signs from different angles. In his excellent blog posts, [Vivek Yadav](https://medium.com/@vivek.yadav) talks about [augmenting data](https://medium.com/@vivek.yadav/dealing-with-unbalanced-data-generating-additional-data-by-jittering-the-original-image-7497fe2119c3#.sgh2jfdqu) and adding [brightness changes](https://medium.com/@vivek.yadav/improved-performance-of-deep-learning-neural-network-models-on-traffic-sign-classification-using-6355346da2dc) that help improve that model learn better. 
+Affine transformations like translation and rotation have the effect of viewing the signs from different angles. In his excellent blog posts, [Vivek Yadav](https://medium.com/@vivek.yadav) talks about [augmenting data](https://medium.com/@vivek.yadav/dealing-with-unbalanced-data-generating-additional-data-by-jittering-the-original-image-7497fe2119c3#.sgh2jfdqu) and adding [brightness changes](https://medium.com/@vivek.yadav/improved-performance-of-deep-learning-neural-network-models-on-traffic-sign-classification-using-6355346da2dc) that help the model learn better.
 
 Original image
 
 ![alt text][image4]
 
-Augmented images
+Random perturbations
 
 ![alt text][image5]
 
@@ -88,7 +88,7 @@ The final model was chosen after trying different architectures. The model is a 
 
 ![alt text][image6]
 
-We have feedforward network of 3 convolutional layers and 3 fully connected layers. Each convolutional layer is followed by a rectified linear unit activation to add in nonlinearities, max pooling to down sample the images and a dropout regularization so that multiple neurons are forced to learn redundancies in the data which can be averaged later during testing. In addition to preventing overfitting it also acts like an ensemble method that averages out activations like multiple neurons. 
+We have feedforward network of 3 convolutional layers and 2 fully connected layers. Each convolutional layer is followed by a rectified linear unit activation to add in nonlinearities, max pooling to down sample the images and a dropout regularization so that multiple neurons are forced to learn redundancies in the data which can be averaged later during testing. In addition to preventing overfitting it also acts like an ensemble agent that averages out activations from multiple neurons. 
 
 I started with a LeNet architecture, added dropout, increased depth, etc until the model was overfitting on a couple of images. I later added the entire training data, tweaked the model a bit, added augmented data and tweaked it further to result in the above.
 
@@ -105,12 +105,16 @@ Probability of retaining neurons during dropout: 0.6
 ```
 
 Accuracy during training:
+
 ![alt text][image7]
 
 Cross entropy loss during training:
+
 ![alt text][image8]
 
 ```
+Accuracy:
+
 training set accuracy: 96.8%
 validation set accuracy: 94.1%
 test set accuracy: 93.1%
