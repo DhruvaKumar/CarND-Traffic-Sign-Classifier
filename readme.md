@@ -90,7 +90,7 @@ The final model was chosen after trying different architectures. The model is a 
 
 We have feedforward network of 3 convolutional layers and 2 fully connected layers. Each convolutional layer is followed by a rectified linear unit activation to add in nonlinearities, max pooling to down sample the images and a dropout regularization so that multiple neurons are forced to learn redundancies in the data which can be averaged later during testing. In addition to preventing overfitting it also acts like an ensemble agent that averages out activations from multiple neurons. 
 
-I started with a LeNet architecture, added dropout, increased depth, etc until the model was overfitting on a couple of images. I later added the entire training data, tweaked the model a bit, added augmented data and tweaked it further to result in the above.
+I started with a LeNet-5 architecture. It worked decently and was giving me a validation accuracy of about 89%. However, the model was overfitting since the training accuracy was high. I added a dropout regularization with a 0.5 probability of retaining neurons after each layer. This improved the validation accuracy, but still wasn't enough. On plotting random images from the dataset, a lot of signs were subjected to either brightness changes, occlusions or affine transformations. I simulated these by adding in jittered images in the training set. By tweaking the parameters further and adding another convolutional layer to learn the augmented data better, I converged upon the network above. 
 
 #### Training
 
@@ -100,7 +100,7 @@ Training parameters:
 ```
 Epochs: 30
 Batch size: 128
-Learning rate: 0.001
+Learning rate: 0.001 (step decay)
 Probability of retaining neurons during dropout: 0.6
 ```
 
@@ -126,7 +126,7 @@ Some German traffic sign images were downloaded from the web and classified with
 
 ![alt text][image9]
 
-5 out of 8 images were classified correctly.
+5 out of 8 images were classified correctly, yielding an accuracy of 62.5%
 
 For each new image, we show the original image, the preprocessed image that is fed into the network and the top 5 softmax probabilities. The green bar shows the correct traffic sign.
 
