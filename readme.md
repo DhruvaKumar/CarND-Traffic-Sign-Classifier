@@ -119,6 +119,8 @@ training set accuracy: 96.8%
 validation set accuracy: 94.1%
 test set accuracy: 93.1%
 ```
+It can be seen that there's potential for the model to learn the underlying representations better. 
+
 
 ### Test model on new images
 
